@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -77,6 +78,62 @@ class Agencia {
 private:
     vector<Astronauta> astronautas;
     vector<Voo> voos;
+
+    // Este metodo so e chamado na agencia temporaria de carregar().
+    bool lerDados(istream& arquivo) {
+        string versao;
+        int quantidade;
+        if (!(arquivo >> versao) || versao != "ASTRONAUTAS_V1") return false;
+        if (!(arquivo >> quantidade) || quantidade < 0) return false;
+        for (int i = 0; i < quantidade; i++) {
+            string cpf, nome;
+            int idade, vivo, disponivel;
+            if (!(arquivo >> cpf)) return false;
+            if (!getline(arquivo >> ws, nome) || nome.empty()) return false;
+            if (!(arquivo >> idade >> vivo >> disponivel)) return false;
+            if ((vivo != 0 && vivo != 1) || (disponivel != 0 && disponivel != 1)) return false;
+            if ((!vivo && disponivel) || buscarAstronauta(cpf) != -1) return false;
+            Astronauta astronauta(cpf, nome, idade);
+            if (!vivo) astronauta.morrer();
+            else if (!disponivel) astronauta.embarcar();
+            astronautas.push_back(astronauta);
+        }
+        if (!(arquivo >> quantidade) || quantidade < 0) return false;
+        for (int i = 0; i < quantidade; i++) {
+            int codigo, tripulantes;
+            string estado;
+            if (!(arquivo >> codigo) || buscarVoo(codigo) != -1) return false;
+            if (!getline(arquivo >> ws, estado)) return false;
+            if (estado != "planejado" && estado != "em curso" &&
+                estado != "finalizado com sucesso" && estado != "finalizado com explosao") return false;
+            if (!(arquivo >> tripulantes) || tripulantes < 0) return false;
+            if (estado != "planejado" && tripulantes == 0) return false;
+            Voo voo(codigo);
+            for (int j = 0; j < tripulantes; j++) {
+                string cpf;
+                if (!(arquivo >> cpf) || buscarAstronauta(cpf) == -1 || voo.temAstronauta(cpf)) return false;
+                voo.adicionarAstronauta(cpf);
+            }
+            if (estado == "em curso") voo.lancar();
+            else if (estado == "finalizado com sucesso") voo.finalizar();
+            else if (estado == "finalizado com explosao") voo.explodir();
+            voos.push_back(voo);
+        }
+        // Confere as relacoes: ninguem pode estar em dois voos em curso.
+        for (int a = 0; a < astronautas.size(); a++) {
+            int emCurso = 0;
+            for (int v = 0; v < voos.size(); v++) {
+                if (!voos[v].temAstronauta(astronautas[a].getCpf())) continue;
+                if (voos[v].getEstado() == "em curso") emCurso++;
+                if (voos[v].getEstado() == "finalizado com explosao" && astronautas[a].estaVivo()) return false;
+            }
+            if (emCurso > 1 || (!astronautas[a].estaVivo() && emCurso > 0)) return false;
+            bool disponivel = astronautas[a].estaVivo() && emCurso == 0;
+            if (astronautas[a].estaDisponivel() != disponivel) return false;
+        }
+        arquivo >> ws;
+        return arquivo.eof() && !arquivo.bad();
+    }
 
     int buscarAstronauta(string cpf) const {
         for (int i = 0; i < astronautas.size(); i++) {
@@ -285,6 +342,40 @@ public:
         }
         if (!encontrou) cout << "(nenhum voo)" << endl;
     }
+    void salvar(string nomeArquivo) const {
+        ofstream arquivo(nomeArquivo.c_str());
+        if (arquivo) {
+            arquivo << "ASTRONAUTAS_V1" << endl << astronautas.size() << endl;
+            for (int a = 0; a < astronautas.size(); a++) {
+                arquivo << astronautas[a].getCpf() << endl
+                        << astronautas[a].getNome() << endl
+                        << astronautas[a].getIdade() << " " << astronautas[a].estaVivo()
+                        << " " << astronautas[a].estaDisponivel() << endl;
+            }
+            arquivo << voos.size() << endl;
+            for (int v = 0; v < voos.size(); v++) {
+                arquivo << voos[v].getCodigo() << endl << voos[v].getEstado() << endl
+                        << voos[v].getQuantidadeAstronautas() << endl;
+                for (int i = 0; i < voos[v].getQuantidadeAstronautas(); i++) {
+                    arquivo << voos[v].getCpf(i) << endl;
+                }
+            }
+            arquivo.close();
+        }
+        if (!arquivo) cout << "ERRO: nao foi possivel salvar em " << nomeArquivo << endl;
+        else cout << "OK: dados salvos em " << nomeArquivo << endl;
+    }
+    void carregar(string nomeArquivo) {
+        ifstream arquivo(nomeArquivo.c_str());
+        Agencia temporaria;
+        if (!arquivo || !temporaria.lerDados(arquivo)) {
+            cout << "ERRO: nao foi possivel carregar de " << nomeArquivo << endl;
+            return;
+        }
+        astronautas = temporaria.astronautas;
+        voos = temporaria.voos;
+        cout << "OK: dados carregados de " << nomeArquivo << endl;
+    }
 };
 
 int main() {
@@ -336,6 +427,14 @@ int main() {
             string cpf;
             cin >> cpf;
             agencia.historico(cpf);
+        } else if (comando == "SALVAR") {
+            string arquivo;
+            cin >> arquivo;
+            agencia.salvar(arquivo);
+        } else if (comando == "CARREGAR") {
+            string arquivo;
+            cin >> arquivo;
+            agencia.carregar(arquivo);
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }

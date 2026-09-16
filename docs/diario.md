@@ -68,3 +68,28 @@ dois comandos em main e consultar os voos para achar o código em curso.
 Histórico considera apenas voos não planejados e mantém a ordem de cadastro.
 Não houve nova intervenção do usuário no plano.
 Resultado: Missão 1 2/2; Parte 1 6/6. Não foi necessário refazer a implementação.
+
+## Missão 2: salvar e carregar
+
+Pedido: continuação da autorização geral para concluir as missões.
+Plano: usar fstream para gravar um cabeçalho de versão, os astronautas e os
+voos em texto. Nomes e estados ocupam linhas próprias. Ler em uma Agencia
+temporária e substituir os dados atuais apenas depois de validar tudo.
+Os estados são reconstruídos pelos construtores e métodos já existentes.
+Também serão rejeitados arquivos incompletos ou incoerentes, mantendo a
+mesma mensagem de erro de carregamento e preservando a agência atual.
+
+Primeiras cinco linhas reais do arquivo produzido pelo teste 01:
+
+```text
+ASTRONAUTAS_V1
+3
+111
+Ana Maria
+30 1 1
+```
+
+O cabeçalho identifica o formato. O 3 indica a quantidade de astronautas.
+Depois vêm CPF, nome e idade/vivo/disponível. Após os astronautas, vêm a
+quantidade de voos e, para cada voo, código, estado, quantidade e seus CPFs.
+Resultado: Missão 2 3/3; Parte 1 6/6. Não foi necessário refazer o código.
