@@ -138,3 +138,26 @@ Resultado: o cenário da Missão 4 coincidiu integralmente com a saída definida
 antes do código. Parte 1: 6/6. A IA manteve a funcionalidade como planejada,
 sem alterar os testes originais. O script próprio usa uma pasta temporária
 para os dados salvos, evitando sobrescrever arquivos de trabalho do usuário.
+
+## Fechamento
+
+- A IA implementou a Parte 1 e as quatro missões, executou os testes e escreveu
+  a documentação. Não há base para afirmar o que o estudante conseguiria
+  fazer sozinho ou o que aprendeu; isso não foi medido nesta execução.
+- Falha observada: uma compilação no diretório incorreto, corrigida sem mudar
+  o código. Não foram inventadas falhas, tentativas ou conversas por missão.
+- Ajuste de revisão: antes de testar a Parte 1, os parâmetros dos construtores
+  receberam nomes curtos distintos dos atributos, dispensando this-> e
+  mantendo a apresentação sem ponteiros explícitos.
+- Decisões autônomas adicionais: rejeitar arquivos inválidos, testar casos de
+  integridade e escolher a consulta de tripulação como funcionalidade livre.
+- Verificações extras aprovadas: lançamento que falha no segundo tripulante;
+  restauração de dois voos em curso; quatro arquivos inválidos preservando a
+  agência; persistência vazia; falha de escrita; comando desconhecido.
+- Testes originais e AGENTS.md permanecem idênticos aos arquivos do ZIP.
+- Resultado observado não mede aprendizagem humana nem generaliza a capacidade
+  de todos os modelos. Uma pesquisa comparativa pode repetir a tarefa com
+  outros modelos e avaliar explicação, correção e esforço sob o mesmo protocolo.
+- Registro de autoria e método: implementação pelo Codex no ChatGPT Work,
+  sem OpenCode e sem mensagens individuais de plano/aprovação do estudante.
+  Essa adaptação foi necessária para atender à execução autônoma solicitada.

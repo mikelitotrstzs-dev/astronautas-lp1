@@ -3,3 +3,5 @@ agencia.exe
 *.o
 dados_teste.txt
 .DS_Store
+dados_missao4.txt
+__pycache__/
