@@ -40,3 +40,22 @@ Resultado: compilação sem avisos e 6/6 testes da Parte 1 aprovados.
 Falha operacional real: uma tentativa de compilação foi executada na pasta
 pai e não encontrou src/main.cpp. O diretório de execução foi corrigido;
 não houve mudança de requisitos nem de testes para resolver isso.
+
+## Primeiro contato: revisão antes da edição
+
+O sistema já cadastra pessoas e voos e controla as transições. A revisão da
+IA identificou três melhorias possíveis:
+
+1. Marcar consultas com const: `int getCodigo() const` deixa explícito que
+   consultar um código não modifica o objeto.
+2. Separar classes em arquivos: `Astronauta.hpp` poderia conter a declaração,
+   facilitando a navegação quando o projeto crescer.
+3. Centralizar estados: constantes para `planejado` reduziriam erros de digitação.
+
+A IA escolheu somente a primeira, por ser pequena e manter o formato das aulas.
+Não houve escolha nem declaração de aprendizagem atribuída ao estudante.
+Plano: marcar getters, buscas, verificações e listagens com const; manter os
+métodos que alteram objetos sem const. Testar novamente a Parte 1.
+Resultado da revisão aplicada: 6/6 testes da Parte 1 aprovados, sem avisos.
+Conceito explicado: const protege contra alterações acidentais dentro de
+métodos de consulta; não congela permanentemente o objeto.

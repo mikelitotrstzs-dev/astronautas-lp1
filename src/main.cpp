@@ -21,11 +21,11 @@ public:
         disponivel = true;
     }
 
-    string getCpf() { return cpf; }
-    string getNome() { return nome; }
-    int getIdade() { return idade; }
-    bool estaVivo() { return vivo; }
-    bool estaDisponivel() { return disponivel; }
+    string getCpf() const { return cpf; }
+    string getNome() const { return nome; }
+    int getIdade() const { return idade; }
+    bool estaVivo() const { return vivo; }
+    bool estaDisponivel() const { return disponivel; }
     void embarcar() { disponivel = false; }
     void desembarcar() {
         if (vivo) disponivel = true;
@@ -48,11 +48,11 @@ public:
         estado = "planejado";
     }
 
-    int getCodigo() { return codigo; }
-    string getEstado() { return estado; }
-    int getQuantidadeAstronautas() { return cpfs.size(); }
-    string getCpf(int posicao) { return cpfs[posicao]; }
-    bool temAstronauta(string cpf) {
+    int getCodigo() const { return codigo; }
+    string getEstado() const { return estado; }
+    int getQuantidadeAstronautas() const { return cpfs.size(); }
+    string getCpf(int posicao) const { return cpfs[posicao]; }
+    bool temAstronauta(string cpf) const {
         for (int i = 0; i < cpfs.size(); i++) {
             if (cpfs[i] == cpf) return true;
         }
@@ -78,20 +78,20 @@ private:
     vector<Astronauta> astronautas;
     vector<Voo> voos;
 
-    int buscarAstronauta(string cpf) {
+    int buscarAstronauta(string cpf) const {
         for (int i = 0; i < astronautas.size(); i++) {
             if (astronautas[i].getCpf() == cpf) return i;
         }
         return -1;
     }
-    int buscarVoo(int codigo) {
+    int buscarVoo(int codigo) const {
         for (int i = 0; i < voos.size(); i++) {
             if (voos[i].getCodigo() == codigo) return i;
         }
         return -1;
     }
     // A ordem destas verificacoes faz parte da especificacao.
-    bool conferirVoo(int posicao, int codigo, string estado) {
+    bool conferirVoo(int posicao, int codigo, string estado) const {
         if (posicao == -1) {
             cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
             return false;
@@ -102,7 +102,7 @@ private:
         }
         return true;
     }
-    bool conferirAstronauta(int posicao, string cpf) {
+    bool conferirAstronauta(int posicao, string cpf) const {
         if (posicao == -1) {
             cout << "ERRO: astronauta " << cpf << " nao cadastrado" << endl;
             return false;
@@ -201,7 +201,7 @@ public:
         voos[v].explodir();
         cout << "OK: voo " << codigo << " explodiu" << endl;
     }
-    void listarVoos() {
+    void listarVoos() const {
         string estados[] = {"planejado", "em curso", "finalizado com sucesso",
                             "finalizado com explosao"};
         cout << "LISTA DE VOOS" << endl;
@@ -223,7 +223,7 @@ public:
             if (!encontrou) cout << "(nenhum)" << endl;
         }
     }
-    void listarMortos() {
+    void listarMortos() const {
         cout << "ASTRONAUTAS MORTOS" << endl;
         bool encontrou = false;
         for (int a = 0; a < astronautas.size(); a++) {
