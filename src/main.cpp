@@ -376,6 +376,49 @@ public:
         voos = temporaria.voos;
         cout << "OK: dados carregados de " << nomeArquivo << endl;
     }
+    void relatorio() const {
+        int planejados = 0, emCurso = 0, sucessos = 0, explosoes = 0;
+        for (int v = 0; v < voos.size(); v++) {
+            string estado = voos[v].getEstado();
+            if (estado == "planejado") planejados++;
+            else if (estado == "em curso") emCurso++;
+            else if (estado == "finalizado com sucesso") sucessos++;
+            else if (estado == "finalizado com explosao") explosoes++;
+        }
+        int vivos = 0, maisExperiente = -1, maiorExperiencia = 0;
+        for (int a = 0; a < astronautas.size(); a++) {
+            if (astronautas[a].estaVivo()) vivos++;
+            int experiencia = 0;
+            for (int v = 0; v < voos.size(); v++) {
+                if (voos[v].getEstado() != "planejado" &&
+                    voos[v].temAstronauta(astronautas[a].getCpf())) experiencia++;
+            }
+            // Nao troca em empate: conserva o primeiro cadastrado.
+            if (experiencia > maiorExperiencia) {
+                maiorExperiencia = experiencia;
+                maisExperiente = a;
+            }
+        }
+        cout << "RELATORIO" << endl;
+        cout << "voos planejados: " << planejados << endl;
+        cout << "voos em curso: " << emCurso << endl;
+        cout << "voos finalizados com sucesso: " << sucessos << endl;
+        cout << "voos finalizados com explosao: " << explosoes << endl;
+        cout << "astronautas cadastrados: " << astronautas.size() << endl;
+        cout << "astronautas vivos: " << vivos << endl;
+        cout << "astronautas mortos: " << astronautas.size() - vivos << endl;
+        cout << "astronauta mais experiente: ";
+        if (maisExperiente == -1) cout << "(nenhum)" << endl;
+        else {
+            cout << astronautas[maisExperiente].getCpf() << " "
+                 << astronautas[maisExperiente].getNome()
+                 << " (voos lancados: " << maiorExperiencia << ")" << endl;
+        }
+        cout << "taxa de sucesso: ";
+        int finalizados = sucessos + explosoes;
+        if (finalizados == 0) cout << "(nenhum voo finalizado)" << endl;
+        else cout << sucessos * 100LL / finalizados << "%" << endl;
+    }
 };
 
 int main() {
@@ -435,6 +478,8 @@ int main() {
             string arquivo;
             cin >> arquivo;
             agencia.carregar(arquivo);
+        } else if (comando == "RELATORIO") {
+            agencia.relatorio();
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }

@@ -93,3 +93,16 @@ O cabeçalho identifica o formato. O 3 indica a quantidade de astronautas.
 Depois vêm CPF, nome e idade/vivo/disponível. Após os astronautas, vêm a
 quantidade de voos e, para cada voo, código, estado, quantidade e seus CPFs.
 Resultado: Missão 2 3/3; Parte 1 6/6. Não foi necessário refazer o código.
+
+## Missão 3: relatório
+
+Pedido: continuação da autorização geral.
+Plano: adicionar relatorio em Agencia e o comando em main. Contar voos por
+estado, astronautas vivos/mortos e participações efetivas; o mais experiente
+é escolhido apenas quando a contagem supera a maior anterior, preservando
+o primeiro cadastro em empates. Calcular a taxa com divisão inteira.
+A experiência será calculada a partir dos voos, sem contador adicional que
+pudesse se perder ao salvar/carregar.
+Resultado: Missão 3 5/5; Parte 1 6/6. Os testes incluem empate, agência vazia
+e comparação do relatório após restaurar o arquivo em outra execução.
+Não foi necessário refazer a implementação.
