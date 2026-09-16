@@ -133,3 +133,8 @@ Plano: adicionar apenas Agencia::listarTripulacao e o ramo do comando em
 main. Usar os getters e buscas existentes. Cobrir inexistente, vazio,
 ordem de inclusão, remoção, lançamento, finalização, morte e restauração.
 Não houve nova mensagem do usuário: a decisão se baseia na autonomia pedida.
+
+Resultado: o cenário da Missão 4 coincidiu integralmente com a saída definida
+antes do código. Parte 1: 6/6. A IA manteve a funcionalidade como planejada,
+sem alterar os testes originais. O script próprio usa uma pasta temporária
+para os dados salvos, evitando sobrescrever arquivos de trabalho do usuário.

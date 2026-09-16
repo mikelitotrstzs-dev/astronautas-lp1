@@ -419,6 +419,25 @@ public:
         if (finalizados == 0) cout << "(nenhum voo finalizado)" << endl;
         else cout << sucessos * 100LL / finalizados << "%" << endl;
     }
+    void listarTripulacao(int codigo) const {
+        int v = buscarVoo(codigo);
+        if (v == -1) {
+            cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
+            return;
+        }
+        cout << "TRIPULACAO DO VOO " << codigo << endl;
+        cout << "estado: " << voos[v].getEstado() << endl;
+        if (voos[v].getQuantidadeAstronautas() == 0) cout << "(nenhum)" << endl;
+        for (int i = 0; i < voos[v].getQuantidadeAstronautas(); i++) {
+            int a = buscarAstronauta(voos[v].getCpf(i));
+            string situacao = "morto";
+            if (astronautas[a].estaVivo()) {
+                situacao = astronautas[a].estaDisponivel() ? "disponivel" : "em voo";
+            }
+            cout << astronautas[a].getCpf() << " " << astronautas[a].getNome()
+                 << " (" << astronautas[a].getIdade() << " anos) - " << situacao << endl;
+        }
+    }
 };
 
 int main() {
@@ -480,6 +499,10 @@ int main() {
             agencia.carregar(arquivo);
         } else if (comando == "RELATORIO") {
             agencia.relatorio();
+        } else if (comando == "TRIPULACAO") {
+            int codigo;
+            cin >> codigo;
+            agencia.listarTripulacao(codigo);
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }
