@@ -59,3 +59,12 @@ métodos que alteram objetos sem const. Testar novamente a Parte 1.
 Resultado da revisão aplicada: 6/6 testes da Parte 1 aprovados, sem avisos.
 Conceito explicado: const protege contra alterações acidentais dentro de
 métodos de consulta; não congela permanentemente o objeto.
+
+## Missão 1: listagem e histórico
+
+Pedido: autorização geral da conversa, sem mensagens individuais fictícias.
+Plano da IA: acrescentar listarAstronautas e historico em Agencia, ligar os
+dois comandos em main e consultar os voos para achar o código em curso.
+Histórico considera apenas voos não planejados e mantém a ordem de cadastro.
+Não houve nova intervenção do usuário no plano.
+Resultado: Missão 1 2/2; Parte 1 6/6. Não foi necessário refazer a implementação.

@@ -243,6 +243,48 @@ public:
         }
         if (!encontrou) cout << "(nenhum)" << endl;
     }
+    void listarAstronautas() const {
+        string grupos[] = {"disponiveis", "em voo", "mortos"};
+        cout << "LISTA DE ASTRONAUTAS" << endl;
+        for (int g = 0; g < 3; g++) {
+            cout << "== " << grupos[g] << " ==" << endl;
+            bool encontrou = false;
+            for (int a = 0; a < astronautas.size(); a++) {
+                int grupo = 2;
+                if (astronautas[a].estaVivo()) {
+                    grupo = astronautas[a].estaDisponivel() ? 0 : 1;
+                }
+                if (grupo != g) continue;
+                encontrou = true;
+                string cpf = astronautas[a].getCpf();
+                cout << cpf << " " << astronautas[a].getNome()
+                     << " (" << astronautas[a].getIdade() << " anos)";
+                if (g == 1) {
+                    for (int v = 0; v < voos.size(); v++) {
+                        if (voos[v].getEstado() == "em curso" && voos[v].temAstronauta(cpf)) {
+                            cout << " - voo " << voos[v].getCodigo();
+                            break;
+                        }
+                    }
+                }
+                cout << endl;
+            }
+            if (!encontrou) cout << "(nenhum)" << endl;
+        }
+    }
+    void historico(string cpf) const {
+        int a = buscarAstronauta(cpf);
+        if (!conferirAstronauta(a, cpf)) return;
+        cout << "HISTORICO DE " << cpf << " " << astronautas[a].getNome() << endl;
+        bool encontrou = false;
+        for (int v = 0; v < voos.size(); v++) {
+            if (voos[v].getEstado() != "planejado" && voos[v].temAstronauta(cpf)) {
+                cout << "voo " << voos[v].getCodigo() << ": " << voos[v].getEstado() << endl;
+                encontrou = true;
+            }
+        }
+        if (!encontrou) cout << "(nenhum voo)" << endl;
+    }
 };
 
 int main() {
@@ -288,6 +330,12 @@ int main() {
             agencia.listarVoos();
         } else if (comando == "LISTAR_MORTOS") {
             agencia.listarMortos();
+        } else if (comando == "LISTAR_ASTRONAUTAS") {
+            agencia.listarAstronautas();
+        } else if (comando == "HISTORICO") {
+            string cpf;
+            cin >> cpf;
+            agencia.historico(cpf);
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }
