@@ -106,3 +106,30 @@ pudesse se perder ao salvar/carregar.
 Resultado: Missão 3 5/5; Parte 1 6/6. Os testes incluem empate, agência vazia
 e comparação do relatório após restaurar o arquivo em outra execução.
 Não foi necessário refazer a implementação.
+
+## Missão 4: consulta da tripulação (planejamento antes da implementação)
+
+Escolha da IA: TRIPULACAO codigo. Permite inspecionar um único voo, com idade
+e situação atual de cada pessoa, sem percorrer a listagem de todos os voos.
+Arquivo definido antes do código: exemplos/missao4/01_tripulacao.in, com
+saída esperada em exemplos/missao4/01_tripulacao.out. Os testes fornecidos
+em testes/ não serão alterados.
+
+Contrato: voo desconhecido imprime `ERRO: voo 99 nao cadastrado`. Um voo
+conhecido imprime `TRIPULACAO DO VOO 10`, depois `estado: planejado` (ou o
+estado atual), e uma linha por pessoa, na ordem de inclusão:
+`111 Ana Maria (30 anos) - disponivel`. As situações possíveis são
+`disponivel`, `em voo` e `morto`, sempre referentes à situação atual da pessoa.
+Um voo vazio imprime `(nenhum)` após o estado. A consulta não altera dados.
+Exemplo vazio esperado:
+
+```text
+TRIPULACAO DO VOO 10
+estado: planejado
+(nenhum)
+```
+
+Plano: adicionar apenas Agencia::listarTripulacao e o ramo do comando em
+main. Usar os getters e buscas existentes. Cobrir inexistente, vazio,
+ordem de inclusão, remoção, lançamento, finalização, morte e restauração.
+Não houve nova mensagem do usuário: a decisão se baseia na autonomia pedida.

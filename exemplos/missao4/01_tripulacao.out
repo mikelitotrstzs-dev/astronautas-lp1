@@ -1,0 +1,45 @@
+ERRO: voo 99 nao cadastrado
+OK: voo 10 cadastrado
+TRIPULACAO DO VOO 10
+estado: planejado
+(nenhum)
+OK: astronauta 111 cadastrado
+OK: astronauta 222 cadastrado
+OK: astronauta 222 adicionado ao voo 10
+OK: astronauta 111 adicionado ao voo 10
+TRIPULACAO DO VOO 10
+estado: planejado
+222 Bruno Costa (35 anos) - disponivel
+111 Ana Maria (30 anos) - disponivel
+OK: astronauta 222 removido do voo 10
+TRIPULACAO DO VOO 10
+estado: planejado
+111 Ana Maria (30 anos) - disponivel
+OK: voo 10 lancado
+TRIPULACAO DO VOO 10
+estado: em curso
+111 Ana Maria (30 anos) - em voo
+OK: voo 20 cadastrado
+OK: astronauta 111 adicionado ao voo 20
+TRIPULACAO DO VOO 20
+estado: planejado
+111 Ana Maria (30 anos) - em voo
+OK: voo 10 finalizado com sucesso
+TRIPULACAO DO VOO 10
+estado: finalizado com sucesso
+111 Ana Maria (30 anos) - disponivel
+OK: voo 20 lancado
+OK: voo 20 explodiu
+TRIPULACAO DO VOO 10
+estado: finalizado com sucesso
+111 Ana Maria (30 anos) - morto
+TRIPULACAO DO VOO 20
+estado: finalizado com explosao
+111 Ana Maria (30 anos) - morto
+OK: dados salvos em dados_missao4.txt
+OK: voo 30 cadastrado
+OK: dados carregados de dados_missao4.txt
+TRIPULACAO DO VOO 20
+estado: finalizado com explosao
+111 Ana Maria (30 anos) - morto
+ERRO: voo 30 nao cadastrado
