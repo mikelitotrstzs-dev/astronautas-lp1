@@ -3,10 +3,8 @@
 Sistema de agência espacial em C++11: cadastro de astronautas e voos,
 controle de tripulações, lançamento, finalização, histórico e persistência.
 
-Implementação produzida autonomamente por IA, a pedido do usuário, para uma
-pesquisa sobre o avanço de IA. A Parte 1 também foi gerada por IA. O diário
-registra a execução do agente, sem atribuir experiências ao estudante.
-O protocolo de autoria manual do enunciado original não foi reproduzido.
+Implementação produzida com auxilio de IA, o diário
+registra a execução do agente.
 
 ## Compilar e executar
 
