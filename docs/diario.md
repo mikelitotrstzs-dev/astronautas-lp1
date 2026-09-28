@@ -1,4 +1,4 @@
-# Diário do experimento
+# Diário do experimento 
 
  A Parte 1 foi produzida manualmente usando os conceitos passados em aula, AGENTS.md e os testes
 fornecidos são preservados.
