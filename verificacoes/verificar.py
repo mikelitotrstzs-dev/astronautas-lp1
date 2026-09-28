@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3 
 """Verificacoes extras de integracao; executar depois de compilar agencia."""
 from pathlib import Path
 import subprocess
