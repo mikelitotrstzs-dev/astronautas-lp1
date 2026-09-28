@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 g++ -std=c++11 -Wall -Wno-sign-compare src/main.cpp -o agencia
