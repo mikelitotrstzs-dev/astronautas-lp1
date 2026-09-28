@@ -79,7 +79,7 @@ private:
     vector<Astronauta> astronautas;
     vector<Voo> voos;
 
-    // Este metodo so e chamado na agencia temporaria de carregar().
+    // Este metodo so e chamado na agencia temporaria de carregar(). 
     bool lerDados(istream& arquivo) {
         string versao;
         int quantidade;
