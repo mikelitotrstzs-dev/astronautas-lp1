@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Uso: bash testes/testar.sh parte1
+# Uso: bash testes/testar.sh parte1 
 #      bash testes/testar.sh missao1
 #      bash testes/testar.sh missao2
 #      bash testes/testar.sh missao3
