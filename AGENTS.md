@@ -1,4 +1,4 @@
-# Instruções para a IA neste projeto
+# Instruções para a IA neste projeto 
 
 - Este é o projeto de um estudante iniciante em C++. Responda em português,
   de forma curta e didática. Quando explicar um conceito, use um exemplo
