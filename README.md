@@ -1,4 +1,4 @@
-# Astronautas - LP1
+# Astronautas - LP1 
 
 Sistema de agência espacial em C++11: cadastro de astronautas e voos,
 controle de tripulações, lançamento, finalização, histórico e persistência.
