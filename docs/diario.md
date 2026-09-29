@@ -43,8 +43,6 @@ IA identificou três melhorias possíveis:
    facilitando a navegação quando o projeto crescer.
 3. Centralizar estados: constantes para `planejado` reduziriam erros de digitação.
 
-A IA escolheu somente a primeira, por ser pequena e manter o formato das aulas.
-Não houve escolha nem declaração de aprendizagem atribuída ao estudante.
 Plano: marcar getters, buscas, verificações e listagens com const; manter os
 métodos que alteram objetos sem const. Testar novamente a Parte 1.
 Resultado da revisão aplicada: 6/6 testes da Parte 1 aprovados, sem avisos.
@@ -98,7 +96,7 @@ Não foi necessário refazer a implementação.
 
 ## Missão 4: consulta da tripulação (planejamento antes da implementação)
 
-Escolha da IA: TRIPULACAO codigo. Permite inspecionar um único voo, com idade
+TRIPULACAO codigo. Permite inspecionar um único voo, com idade
 e situação atual de cada pessoa, sem percorrer a listagem de todos os voos.
 Arquivo definido antes do código: exemplos/missao4/01_tripulacao.in, com
 saída esperada em exemplos/missao4/01_tripulacao.out. Os testes fornecidos
@@ -124,8 +122,7 @@ ordem de inclusão, remoção, lançamento, finalização, morte e restauração
 Não houve nova mensagem do usuário: a decisão se baseia na autonomia pedida.
 
 Resultado: o cenário da Missão 4 coincidiu integralmente com a saída definida
-antes do código. Parte 1: 6/6. A IA manteve a funcionalidade como planejada,
-sem alterar os testes originais. O script próprio usa uma pasta temporária
+antes do código. Parte 1: 6/6. O script próprio usa uma pasta temporária
 para os dados salvos, evitando sobrescrever arquivos de trabalho do usuário.
 
 ## Fechamento
